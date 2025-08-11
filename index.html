@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+  <html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Báo cáo Trình chiếu: Tình hình Gia hạn Tuần 04–10/08/2025</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-bdR1yD0QvY6bYJH+r2cUQ7k6mJbqj6kTAFQ1T1G+o2XfS4Qy6k14p3Quk4i0XSS7XzjhuA8I5Ebq0w5qv2G4Vg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <style>
+      :root {
+        /* Light theme palette */
+        --bg-dark: #f5f7fb;            /* page background */
+        --bg-slide: #ffffff;           /* slide surface */
+        --primary: #e94560;            /* accent */
+        --secondary: #3b82f6;          /* supportive accent */
+        --text: #0f172a;               /* main text */
+        --muted: #64748b;              /* secondary text */
+        --border: #e5e7eb;             /* borders */
+        --success: #22c55e;
+        --warning: #f59e0b;
+        --danger: #ef4444;
+        --info: #3b82f6;
+
+        --radius-lg: 20px;
+        --radius-md: 12px;
+
+        /* Softer shadow for light UI */
+        --shadow-lg: 0 10px 30px rgba(2, 6, 23, 0.08);
+
+        --gap: clamp(12px, 1.2vw, 20px);
+
+        --slide-w: min(1100px, 96vw);
+        --slide-ratio: 16 / 9;
+
+        --focus-ring: 0 0 0 3px rgba(233, 69, 96, 0.35);
+
+        --trans-fast: 180ms;
+        --trans-slow: 420ms;
+      }
+
+      /* Reset & base */
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: 'Be Vietnam Pro', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        /* Light radial gradient background */
+        background: radial-gradient(1200px 800px at 10% 10%, #ffffff 0%, #f5f7fb 55%, #eef2f7 100%);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+
+        display: grid;
+        place-items: center;
+        padding: 16px;
+        gap: 16px;
+      }
+      a, button { color: inherit; }
+
+      .sr-only {
+        position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+        overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+      }
+
+      /* Slideshow shell */
+      .slideshow {
+        width: 100%;
+        max-width: var(--slide-w);
+      }
+
+      .viewport {
+        position: relative;
+        aspect-ratio: var(--slide-ratio);
+        background: linear-gradient(180deg, var(--bg-slide), #f6f9ff);
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+      }
+
+      /* Track - transform-based for smoother perf */
+      .slides {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        transition: transform var(--trans-slow) cubic-bezier(.2,.7,.2,1);
+        will-change: transform;
+        transform: translate3d(calc(var(--index, 0) * -100%), 0, 0);
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .slides { transition-duration: 1ms; }
+      }
+
+      /* Slide */
+      .slide {
+        flex: 0 0 100%;
+        padding: clamp(16px, 3.4vw, 48px) clamp(16px, 3.8vw, 64px);
+        display: grid;
+        grid-auto-rows: max-content auto;
+        gap: 10px;
+      }
+
+      /* Titles */
+      .slide-title {
+        font-size: clamp(22px, 2.6vw, 34px);
+        font-weight: 800;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .slide-title::before {
+        content: "";
+        display: inline-block;
+        width: 6px;
+        height: 1.15em;
+        border-radius: 3px;
+        background: linear-gradient(180deg, #ff6a84, var(--primary));
+      }
+      .slide-subtitle {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: clamp(14px, 1.4vw, 18px);
+      }
+
+      .content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: calc(var(--gap) * 1.4);
+        align-items: center;
+        min-height: 0;
+      }
+      @media (max-width: 900px) {
+        .content { grid-template-columns: 1fr; text-align: center; }
+      }
+
+      /* Title slide */
+      .title-slide {
+        place-items: center;
+        text-align: center;
+        gap: 6px;
+      }
+      .title-slide h1 {
+        font-size: clamp(32px, 5.2vw, 64px);
+        font-weight: 800;
+        letter-spacing: 0.2px;
+        margin: 0;
+      }
+      .title-slide h2 {
+        font-size: clamp(18px, 2.4vw, 28px);
+        margin: 4px 0 0 0;
+        font-weight: 600;
+        color: var(--primary);
+      }
+
+      /* Cards, metrics */
+      .metric {
+        text-align: center;
+      }
+      .metric .value {
+        font-size: clamp(48px, 8vw, 92px);
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -1px;
+        background: linear-gradient(180deg, #ff7e97, var(--danger));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      .metric .label {
+        color: var(--muted);
+        font-size: clamp(14px, 1.6vw, 20px);
+      }
+
+      .info-card {
+        /* Very subtle tinted surface for light mode */
+        background: linear-gradient(180deg, rgba(59, 130, 246, 0.06), rgba(99, 102, 241, 0.04));
+        padding: clamp(14px, 2.2vw, 24px);
+        border-radius: var(--radius-md);
+        border: 1px solid var(--border);
+        height: 100%;
+      }
+      .info-card h4 {
+        margin: 0 0 10px 0;
+        font-size: clamp(16px, 1.8vw, 22px);
+        color: var(--primary);
+      }
+      .info-card p, .info-card li {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .info-card ul { margin: 0; padding-left: 18px; }
+
+      /* Bar chart */
+      .bar-chart { display: grid; gap: 14px; }
+      .bar-chart .item { display: grid; gap: 6px; }
+      .bar-chart .label-row {
+        display: flex; justify-content: space-between; font-weight: 600;
+        font-size: clamp(13px, 1.4vw, 16px);
+        color: var(--text);
+      }
+      .bar-chart .track {
+        width: 100%;
+        height: 22px;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        overflow: hidden;
+      }
+      .bar-chart .bar {
+        height: 100%;
+        width: var(--w, 0%);
+        border-radius: 6px;
+        background: linear-gradient(90deg, var(--c1), var(--c2));
+        transition: width 600ms ease;
+      }
+      .bar.-danger { --c1: #ef4444; --c2: #fca5a5; }
+      .bar.-warning { --c1: #f59e0b; --c2: #fcd34d; }
+      .bar.-info { --c1: #3b82f6; --c2: #93c5fd; }
+
+      /* Calendar icon */
+      .calendar-illustration {
+        font-size: clamp(80px, 12vw, 180px);
+        color: #cbd5e1;
+        display: block;
+        text-align: center;
+      }
+
+      /* Controls */
+      .controls {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        max-width: var(--slide-w);
+        margin-top: 14px;
+      }
+      .btns {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+      }
+      .btn {
+        background: var(--primary);
+        color: white;
+        border: 0;
+        padding: 10px 18px;
+        border-radius: 999px;
+        font: 700 14px/1 'Be Vietnam Pro', sans-serif;
+        cursor: pointer;
+        transition: transform var(--trans-fast), opacity var(--trans-fast), background var(--trans-fast);
+      }
+      .btn:hover { transform: translateY(-1px); }
+      .btn:active { transform: translateY(0); }
+      .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+      .btn.-ghost {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--text);
+      }
+      .btn:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+      .counter {
+        text-align: center;
+        color: var(--muted);
+        font-weight: 600;
+        font-size: 15px;
+      }
+
+      .dots {
+        display: flex;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .dot {
+        width: 10px; height: 10px; border-radius: 50%;
+        background: #e2e8f0;
+        border: 1px solid var(--border);
+        cursor: pointer;
+        transition: transform var(--trans-fast), background var(--trans-fast);
+      }
+      .dot[aria-current="true"] {
+        background: var(--primary);
+        transform: scale(1.2);
+      }
+      .dot:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+      /* Progress bar */
+      .progress {
+        grid-column: 1 / -1;
+        height: 4px;
+        background: rgba(0, 0, 0, 0.08);
+        border-radius: 999px;
+        overflow: hidden;
+      }
+      .progress__bar {
+        width: var(--progress, 0%);
+        height: 100%;
+        background: linear-gradient(90deg, #60a5fa, #e94560);
+        transition: width var(--trans-slow);
+      }
+
+      /* Tips */
+      .tips {
+        max-width: var(--slide-w);
+        color: var(--muted);
+        font-size: 13px;
+        text-align: center;
+      }
+
+      /* Print: show all slides vertically */
+      @media print {
+        body { background: white; color: black; padding: 0; }
+        .slideshow { max-width: none; }
+        .viewport { aspect-ratio: auto; box-shadow: none; border: 0; }
+        .slides { display: block; transform: none !important; }
+        .slide { page-break-inside: avoid; border-bottom: 1px solid #ddd; }
+        .controls, .tips { display: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a href="#slides" class="sr-only">Bỏ qua điều hướng và tới nội dung trình chiếu</a>
+
+    <div class="slideshow" role="region" aria-label="Báo cáo trình chiếu tuần 04–10/08/2025">
+      <div class="viewport" id="viewport">
+        <div class="slides" id="slides" style="--index: 0" data-autoplay="false">
+          <!-- Slide 1: Title -->
+          <section class="slide title-slide" role="group" aria-roledescription="slide" aria-label="Trang tiêu đề">
+            <h1>Báo Cáo Tình Hình Gia Hạn</h1>
+            <h2>Tuần 04/08 – 10/08/2025</h2>
+          </section>
+
+          <!-- Slide 2: Tóm tắt -->
+          <section class="slide" role="group" aria-roledescription="slide" aria-label="Tóm tắt điều hành">
+            <h3 class="slide-title">Tóm Tắt Điều Hành</h3>
+            <p class="slide-subtitle">Kết quả và các khó khăn chính trong tuần.</p>
+            <div class="content">
+              <div class="metric">
+                <div class="value">8 HĐ</div>
+                <div class="label">Còn thiếu so với mục tiêu</div>
+              </div>
+              <div class="bar-chart" data-bars>
+                <div class="item" data-percent="55">
+                  <div class="label-row">
+                    <span><i class="fas fa-store-slash"></i> Kẹt tài chính / Ngừng KD</span>
+                    <span>55%</span>
+                  </div>
+                  <div class="track"><div class="bar -danger" aria-hidden="true"></div></div>
+                </div>
+                <div class="item" data-percent="25">
+                  <div class="label-row">
+                    <span><i class="fas fa-phone-slash"></i> Khó tiếp cận</span>
+                    <span>25%</span>
+                  </div>
+                  <div class="track"><div class="bar -warning" aria-hidden="true"></div></div>
+                </div>
+                <div class="item" data-percent="20">
+                  <div class="label-row">
+                    <span><i class="fas fa-exchange-alt"></i> Chuyển giải pháp khác</span>
+                    <span>20%</span>
+                  </div>
+                  <div class="track"><div class="bar -info" aria-hidden="true"></div></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Slide 3: Ảnh hưởng & Chẩn đoán -->
+          <section class="slide" role="group" aria-roledescription="slide" aria-label="Ảnh hưởng và chẩn đoán">
+            <h3 class="slide-title">Ảnh Hưởng & Chẩn Đoán</h3>
+            <p class="slide-subtitle">Các tác động chính đến KPI và rủi ro.</p>
+            <div class="content">
+              <div class="info-card">
+                <h4><i class="fas fa-hourglass-half"></i> Tỷ Lệ Chốt Chậm</h4>
+                <ul>
+                  <li><b>Nhu cầu sụt/chi trả yếu:</b> Nhiều khách hàng dời quyết định sang sau 11-20/8.</li>
+                  <li><b>Tiếp cận khó:</b> Pipeline tồn nhiều thông tin thiếu, không xác minh được ý định thực.</li>
+                </ul>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-exclamation-triangle"></i> Rủi Ro Rời Bỏ Tăng</h4>
+                <p>Nguy cơ cao ở nhóm đã nêu đối thủ (EasyPOS, KiotViet) hoặc web/domain đã trỏ đi nơi khác.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Slide 4: Chiến lược xử lý -->
+          <section class="slide" role="group" aria-roledescription="slide" aria-label="Chiến lược xử lý">
+            <h3 class="slide-title">Chiến Lược Xử Lý</h3>
+            <p class="slide-subtitle">Hành động cụ thể cho từng nhóm khách hàng.</p>
+            <div class="content" style="align-items: stretch;">
+              <div class="info-card">
+                <h4><i class="fas fa-hand-holding-usd"></i> Nhóm A: Hẹn/Kẹt tiền</h4>
+                <p>Gọi nhắc, chốt PTTT linh hoạt, gửi link ngay.</p>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-pause-circle"></i> Nhóm B: Tạm ngừng</h4>
+                <p>Đề xuất gói duy trì rẻ, đóng băng thời gian, trấn an về thuế.</p>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-user-slash"></i> Nhóm C: Khó tiếp cận</h4>
+                <p>Tiếp cận đa kênh (FB, SMS), xin số thay thế, đổi người gọi.</p>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-running"></i> Nhóm D: Chuyển đối thủ</h4>
+                <p>Gói win-back 14 ngày, nêu bật ưu thế, giữ liên hệ.</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Slide 5: Kế hoạch tuần tới -->
+          <section class="slide" role="group" aria-roledescription="slide" aria-label="Kế hoạch tuần tới">
+            <h3 class="slide-title">Kế Hoạch Tuần Tới</h3>
+            <p class="slide-subtitle">Lịch trình hành động từ 11/08 – 17/08.</p>
+            <div class="content">
+              <div>
+                <i class="far fa-calendar-alt calendar-illustration" aria-hidden="true"></i>
+              </div>
+              <div>
+                <div class="info-card">
+                  <ul>
+                    <li><b>T2–T3:</b> Dọn nhóm có hẹn 10–13/8 (chốt/thu tiền).</li>
+                    <li><b>T4–T5:</b> Đẩy nhóm 14–17/8 + onsite các case đã hẹn.</li>
+                    <li><b>T6:</b> Win-back mini cho nhóm “EasyPOS/KiotViet”.</li>
+                    <li><b>T7–CN:</b> Hoàn tất thu tiền tồn, rà soát nhóm “khó tiếp cận”.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Slide 6: Cần phê duyệt -->
+          <section class="slide" role="group" aria-roledescription="slide" aria-label="Đề xuất cần phê duyệt">
+            <h3 class="slide-title">Đề Xuất Cần Phê Duyệt</h3>
+            <p class="slide-subtitle">Các chính sách và hành động cần sự đồng ý từ cấp trên.</p>
+            <div class="content" style="align-items: stretch;">
+              <div class="info-card">
+                <h4><i class="fas fa-cogs"></i> Khung chính sách linh hoạt</h4>
+                <p>Option A: 1.000.000đ/năm (giữ data).</p>
+                <p>Option B: TT 50% + 1+1 (tặng 3-6 tháng).</p>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-undo"></i> Gói Win-back đối thủ</h4>
+                <p>Chạy song song 14 ngày, miễn phí chuyển dữ liệu, hotline ưu tiên.</p>
+              </div>
+              <div class="info-card">
+                <h4><i class="fas fa-map-marker-alt"></i> Cho phép đi Onsite</h4>
+                <p>Áp dụng cho các case tại HCM/HN đã xác nhận hẹn gặp trực tiếp.</p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <div class="controls" aria-label="Điều khiển trình chiếu">
+        <div class="btns">
+          <button id="prev-btn" class="btn" type="button" aria-label="Trang trước">‹ Trang Trước</button>
+          <button id="play-btn" class="btn -ghost" type="button" aria-pressed="false" aria-label="Tự động chạy">► Tự động</button>
+          <button id="next-btn" class="btn" type="button" aria-label="Trang sau">Trang Sau ›</button>
+        </div>
+
+        <div class="counter" id="slide-counter" aria-live="polite">1 / 6</div>
+
+        <div class="dots" id="pagination" role="tablist" aria-label="Chọn trang"></div>
+
+        <div class="progress" aria-hidden="true">
+          <div class="progress__bar" id="progress-bar" style="--progress: 0%"></div>
+        </div>
+      </div>
+    </div>
+
+    <p class="tips">Mẹo: dùng phím mũi tên ← / → để chuyển trang, Space để bật/tắt tự động, Home/End để tới đầu/cuối. Vuốt trái/phải trên điện thoại.</p>
+
+    <script>
+      (function () {
+        const slidesEl = document.getElementById('slides');
+        const viewport = document.getElementById('viewport');
+        const slides = Array.from(slidesEl.children);
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const playBtn = document.getElementById('play-btn');
+        const counter = document.getElementById('slide-counter');
+        const pagination = document.getElementById('pagination');
+        const progressBar = document.getElementById('progress-bar');
+
+        let index = 0;
+        let autoplay = false;
+        let timer = null;
+        const AUTOPLAY_MS = 5000;
+        const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // Create dots
+        slides.forEach((_, i) => {
+          const dot = document.createElement('button');
+          dot.className = 'dot';
+          dot.type = 'button';
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Tới trang ${i + 1}`);
+          dot.addEventListener('click', () => go(i));
+          pagination.appendChild(dot);
+        });
+
+        function updateCounter() {
+          counter.textContent = `${index + 1} / ${slides.length}`;
+        }
+        function updateButtons() {
+          prevBtn.disabled = (index === 0);
+          nextBtn.disabled = (index === slides.length - 1);
+        }
+        function updateDots() {
+          const dots = pagination.querySelectorAll('.dot');
+          dots.forEach((d, i) => d.setAttribute('aria-current', i === index ? 'true' : 'false'));
+        }
+        function updateProgress() {
+          const pct = ((index + 1) / slides.length) * 100;
+          progressBar.style.setProperty('--progress', `${pct}%`);
+        }
+        function applyHash() {
+          const hash = `#slide-${index + 1}`;
+          if (history.replaceState) {
+            history.replaceState(null, '', hash);
+          } else {
+            location.hash = hash;
+          }
+        }
+        function fromHash() {
+          const m = location.hash.match(/slide-(\d+)/i);
+          if (m) {
+            const i = Math.max(1, Math.min(slides.length, parseInt(m[1], 10))) - 1;
+            return i;
+          }
+          return 0;
+        }
+
+        function go(i, { animate = true } = {}) {
+          index = Math.max(0, Math.min(slides.length - 1, i));
+          if (!animate) {
+            const prev = slidesEl.style.transition;
+            slidesEl.style.transition = 'none';
+            // force reflow
+            void slidesEl.offsetHeight;
+            slidesEl.style.transition = prev || '';
+          }
+          slidesEl.style.setProperty('--index', index);
+
+          // aria-hidden management
+          slides.forEach((s, si) => s.setAttribute('aria-hidden', si === index ? 'false' : 'true'));
+
+          updateCounter();
+          updateButtons();
+          updateDots();
+          updateProgress();
+          applyHash();
+        }
+
+        function next() {
+          if (index < slides.length - 1) {
+            go(index + 1);
+          } else if (autoplay) {
+            go(0);
+          }
+        }
+        function prev() {
+          if (index > 0) go(index - 1);
+        }
+
+        function startAutoplay() {
+          if (prefersReducedMotion) return; // respect user preference
+          stopAutoplay();
+          autoplay = true;
+          playBtn.setAttribute('aria-pressed', 'true');
+          playBtn.textContent = '❚❚ Tạm dừng';
+          timer = setInterval(next, AUTOPLAY_MS);
+        }
+        function stopAutoplay() {
+          autoplay = false;
+          playBtn.setAttribute('aria-pressed', 'false');
+          playBtn.textContent = '► Tự động';
+          if (timer) {
+            clearInterval(timer);
+            timer = null;
+          }
+        }
+        function toggleAutoplay() {
+          autoplay ? stopAutoplay() : startAutoplay();
+        }
+
+        // Bars init (convert data-percent -> --w)
+        function initBars() {
+          const charts = document.querySelectorAll('[data-bars]');
+          charts.forEach(chart => {
+            chart.querySelectorAll('.item').forEach(item => {
+              const p = Number(item.dataset.percent || 0);
+              const bar = item.querySelector('.bar');
+              if (bar) {
+                requestAnimationFrame(() => {
+                  bar.style.setProperty('--w', `${Math.max(0, Math.min(100, p))}%`);
+                });
+              }
+            });
+          });
+        }
+
+        // Keyboard
+        function onKey(e) {
+          if (e.defaultPrevented) return;
+          const tag = e.target.tagName.toLowerCase();
+          if (['input', 'textarea', 'select'].includes(tag)) return;
+
+          if (e.key === 'ArrowRight') { next(); e.preventDefault(); }
+          else if (e.key === 'ArrowLeft') { prev(); e.preventDefault(); }
+          else if (e.key === 'Home') { go(0); e.preventDefault(); }
+          else if (e.key === 'End') { go(slides.length - 1); e.preventDefault(); }
+          else if (e.key === ' ' || e.key.toLowerCase() === 'k') { toggleAutoplay(); e.preventDefault(); }
+        }
+
+        // Swipe with Pointer Events
+        function initSwipe() {
+          if (!window.PointerEvent) return;
+          let startX = 0, startY = 0, isPointerDown = false, isHorizontal = null;
+
+          viewport.addEventListener('pointerdown', (e) => {
+            isPointerDown = true;
+            isHorizontal = null;
+            startX = e.clientX;
+            startY = e.clientY;
+          });
+
+          viewport.addEventListener('pointermove', (e) => {
+            if (!isPointerDown) return;
+            const dx = e.clientX - startX;
+            const dy = e.clientY - startY;
+            if (isHorizontal === null) {
+              isHorizontal = Math.abs(dx) > Math.abs(dy);
+            }
+          });
+
+          viewport.addEventListener('pointerup', (e) => {
+            if (!isPointerDown) return;
+            isPointerDown = false;
+
+            const dx = e.clientX - startX;
+            const threshold = 40;
+            if (isHorizontal && Math.abs(dx) > threshold) {
+              if (dx < 0) next();
+              else prev();
+            }
+          });
+
+          viewport.addEventListener('pointercancel', () => { isPointerDown = false; });
+        }
+
+        // Pause autoplay on visibility/tab change
+        function onVisibility() {
+          if (document.hidden) stopAutoplay();
+        }
+
+        // Events
+        nextBtn.addEventListener('click', next);
+        prevBtn.addEventListener('click', prev);
+        playBtn.addEventListener('click', toggleAutoplay);
+        document.addEventListener('keydown', onKey);
+        document.addEventListener('visibilitychange', onVisibility);
+        window.addEventListener('hashchange', () => go(fromHash()));
+
+        // Hover/pointer pause on viewport (optional)
+        viewport.addEventListener('mouseenter', () => { if (autoplay) stopAutoplay(); });
+        viewport.addEventListener('mouseleave', () => { if (autoplay) startAutoplay(); });
+
+        // Init
+        initSwipe();
+        initBars();
+        const initialIndex = fromHash();
+        go(initialIndex, { animate: false });
+        updateDots();
+
+        // Optionally start autoplay: set data-autoplay="true" on .slides to default ON
+        if (slidesEl.dataset.autoplay === 'true' && !prefersReducedMotion) {
+          startAutoplay();
+        }
+      })();
+    </script>
+  </body>
+  </html>
