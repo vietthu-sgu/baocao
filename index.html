@@ -2,34 +2,178 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danh sách báo cáo</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* --- CSS để làm đẹp --- */
+    :root {
+      --primary-color: #007bff;
+      --background-color: #f4f7f9;
+      --card-background: #ffffff;
+      --text-color: #333;
+      --link-color: #555;
+      --hover-color: #ffffff;
+      --border-radius: 12px;
+      --shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: var(--background-color);
+      color: var(--text-color);
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background-color: var(--card-background);
+      border-radius: var(--border-radius);
+      box-shadow: var(--shadow);
+      padding: 2.5rem;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-color);
+      margin: 0 0 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    
+    header h1 .fa-chart-pie {
+        color: var(--primary-color);
+    }
+
+    #file-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      text-align: left;
+    }
+
+    #file-list li {
+      margin-bottom: 1rem;
+    }
+
+    #file-list li a {
+      display: flex;
+      align-items: center;
+      padding: 1rem;
+      background-color: var(--background-color);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--link-color);
+      font-weight: 500;
+      transition: all 0.3s ease;
+      border: 1px solid #e0e0e0;
+    }
+
+    #file-list li a:before {
+      content: '\f15c'; /* Font Awesome file icon */
+      font-family: 'Font Awesome 6 Free';
+      font-weight: 900;
+      margin-right: 12px;
+      color: var(--primary-color);
+      font-size: 1.1rem;
+    }
+
+    #file-list li a:hover {
+      background-color: var(--primary-color);
+      color: var(--hover-color);
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
+    }
+    
+    #file-list li a:hover:before {
+        color: var(--hover-color);
+    }
+
+    .status-message {
+      color: #888;
+      font-style: italic;
+      padding: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <h1>📊 Danh sách báo cáo</h1>
-  <ul id="file-list"></ul>
+
+  <div class="container">
+    <header>
+      <h1><i class="fas fa-chart-pie"></i> Danh sách báo cáo</h1>
+    </header>
+    <main>
+      <ul id="file-list">
+        </ul>
+    </main>
+  </div>
 
   <script>
     async function loadFiles() {
       const username = "vietthu-sgu";
       const repo = "baocao";
-      const branch = "main";
       const apiUrl = `https://api.github.com/repos/${username}/${repo}/contents/`;
-
-      const res = await fetch(apiUrl);
-      const files = await res.json();
-
       const list = document.getElementById("file-list");
 
-      files
-        .filter(f => f.name.endsWith(".html") && f.name !== "index.html")
-        .forEach(f => {
-          const li = document.createElement("li");
-          const a = document.createElement("a");
-          a.href = f.name;
-          a.textContent = f.name;
-          li.appendChild(a);
-          list.appendChild(li);
+      // Hiển thị thông báo đang tải
+      list.innerHTML = `<li class="status-message">Đang tải danh sách...</li>`;
+
+      try {
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+          throw new Error(`Lỗi kết nối: ${response.status}`);
+        }
+        const files = await response.json();
+
+        // Lọc các file html, trừ file index.html
+        const reportFiles = files.filter(file => 
+          file.type === "file" && 
+          file.name.endsWith(".html") && 
+          file.name !== "index.html"
+        );
+
+        // Xóa thông báo đang tải
+        list.innerHTML = '';
+
+        if (reportFiles.length === 0) {
+          list.innerHTML = `<li class="status-message">Không tìm thấy báo cáo nào.</li>`;
+          return;
+        }
+
+        // Sắp xếp file theo tên
+        reportFiles.sort((a, b) => a.name.localeCompare(b.name));
+
+        reportFiles.forEach(file => {
+          const listItem = document.createElement("li");
+          const link = document.createElement("a");
+          link.href = file.name;
+          link.textContent = file.name.replace('.html', ''); // Bỏ đuôi .html cho gọn
+          
+          listItem.appendChild(link);
+          list.appendChild(listItem);
         });
+
+      } catch (error) {
+        console.error("Không thể tải danh sách file:", error);
+        list.innerHTML = `<li class="status-message">Đã xảy ra lỗi. Vui lòng thử lại sau.</li>`;
+      }
     }
 
     loadFiles();
