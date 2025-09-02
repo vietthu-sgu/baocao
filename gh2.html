@@ -1,154 +1,318 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infographic: Các Vấn Đề & Nguyên Nhân Phổ Biến Nhất</title>
+    <title>Báo cáo Infographic T8/2025 - Phòng Gia hạn 2</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            background-color: #f0f4f8;
         }
-        .card-gradient-problem {
-            background: linear-gradient(135deg, #fef2f2, #fff1f2);
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #4F46E5 0%, #06B6D4 100%);
         }
-        .card-gradient-solution {
-            background: linear-gradient(135deg, #f0fdf4, #eff6ff);
+
+        .card {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .progress-bar-bg {
+            background-color: #e5e7eb;
+            border-radius: 9999px;
+            height: 1rem;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+            background: linear-gradient(90deg, #34D399, #10B981);
+        }
+        
+        .progress-bar-warn {
+             background: linear-gradient(90deg, #FBBF24, #F59E0B);
+        }
+
+        .progress-bar-danger {
+            background: linear-gradient(90deg, #F87171, #EF4444);
+        }
+
+        .kpi-gauge {
+            position: relative;
+            width: 150px;
+            height: 150px;
+        }
+
+        .kpi-gauge-bg,
+        .kpi-gauge-arc {
+            fill: none;
+            stroke-width: 16;
+            stroke-linecap: round;
+        }
+
+        .kpi-gauge-bg {
+            stroke: #e5e7eb;
+        }
+
+        .kpi-gauge-arc {
+            stroke: #4f46e5;
+            transition: stroke-dashoffset 1s ease-in-out;
+        }
+
+        .kpi-gauge-text {
+            font-size: 2.25rem;
+            font-weight: 800;
+            fill: #1f2937;
+            font-family: 'Be Vietnam Pro', sans-serif;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .status-good { background-color: #D1FAE5; color: #065F46; }
+        .status-ok { background-color: #FEF3C7; color: #92400E; }
+        .status-bad { background-color: #FEE2E2; color: #991B1B; }
+        .status-great { background-color: #C7D2FE; color: #4338CA; }
+        
+        h1, h2, h3 {
+            font-weight: 800;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 p-4 sm:p-6 md:p-8">
+
+<body class="p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
         <!-- Header -->
         <header class="text-center mb-10">
-            <h1 class="text-3xl md:text-4xl font-bold text-gray-900">Phân Tích Lý Do Khách Hàng Không Gia Hạn</h1>
-            <p class="text-lg text-gray-500 mt-2">Tổng hợp các vấn đề và nguyên nhân nổi bật (Tuần 11/08 – 17/08)</p>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-800">BÁO CÁO KẾT QUẢ THÁNG 8/2025</h1>
+            <p class="text-xl text-indigo-600 font-semibold mt-2">Phòng Gia Hạn 2</p>
         </header>
 
-        <!-- Problems Section -->
-        <section class="mb-12">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-red-600 mb-8">4 Vấn Đề Phổ Biến Nhất</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Problem 1 -->
-                <div class="card-gradient-problem border border-red-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-red-800">Ngừng Kinh Doanh</h3>
+        <!-- Main KPI -->
+        <div class="card p-6 md:p-8 mb-10">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">TỔNG KẾT CHỈ SỐ KEY METRICS</h2>
+            <div class="flex flex-col md:flex-row items-center justify-around gap-8">
+                <div class="kpi-gauge">
+                    <svg viewBox="0 0 100 100" class="transform -rotate-90">
+                        <circle class="kpi-gauge-bg" cx="50" cy="50" r="42"></circle>
+                        <circle id="kpi-arc" class="kpi-gauge-arc" cx="50" cy="50" r="42" stroke-dasharray="264"
+                            stroke-dashoffset="26.4"></circle>
+                    </svg>
+                    <div
+                        class="absolute inset-0 flex items-center justify-center">
+                        <span class="kpi-gauge-text">91.4%</span>
                     </div>
-                    <p class="text-gray-600 mb-4">Khách hàng đóng cửa, giải thể hoặc gặp khó khăn tài chính, không thể tiếp tục hoạt động.</p>
-                    <blockquote class="border-l-4 border-red-300 pl-4 italic text-gray-500">
-                        "Càng bán càng lỗ nên chị dừng..."
-                    </blockquote>
                 </div>
-
-                <!-- Problem 2 -->
-                <div class="card-gradient-problem border border-red-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M16 8l2-2m0 0l2 2m-2-2v5.5A2.5 2.5 0 0115.5 14h-1.05a2.5 2.5 0 01-2.5-2.5V2m0 0l2 2m-2-2l-2 2m2-2l2 2M3 18.5V11a2.5 2.5 0 012.5-2.5h1.05a2.5 2.5 0 012.5 2.5v7.5m-6 0l2-2m-2 2l-2-2" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-red-800">Không Tiếp Cận Được</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-6 text-center md:text-left">
+                    <div class="border-l-4 border-green-500 pl-4 py-2">
+                        <p class="text-gray-500 text-sm font-medium">1. Tỷ lệ gia hạn (Renewal)</p>
+                        <p class="text-2xl font-bold text-gray-800">78.65% <span class="text-base font-normal">HTKH</span></p>
+                        <p class="text-sm text-gray-600">Điểm: <span class="font-semibold text-green-600">47.19%</span></p>
                     </div>
-                    <p class="text-gray-600 mb-4">Tỷ lệ lớn không nghe máy, thuê bao, hoặc từ chối cuộc gọi ngay từ đầu.</p>
-                    <blockquote class="border-l-4 border-red-300 pl-4 italic text-gray-500">
-                        "Giới thiệu Sapo KH cúp máy ngang."
-                    </blockquote>
-                </div>
-
-                <!-- Problem 3 -->
-                <div class="card-gradient-problem border border-red-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-red-800">Chuyển Đổi Giải Pháp</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Chuyển sang đối thủ (KiotViet), tự code web, hoặc chỉ cần dùng Excel vì quy mô nhỏ.</p>
-                    <blockquote class="border-l-4 border-red-300 pl-4 italic text-gray-500">
-                        "Chị dùng thử sang KiotViet thấy ok hơn nhiều."
-                    </blockquote>
-                </div>
-
-                <!-- Problem 4 -->
-                <div class="card-gradient-problem border border-red-200 rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <div class="flex items-center mb-4">
-                        <div class="bg-red-100 p-3 rounded-full mr-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-xl font-bold text-red-800">Không Thấy Giá Trị</h3>
-                    </div>
-                    <p class="text-gray-600 mb-4">Ít hoặc không sử dụng phần mềm, chưa thấy lợi ích rõ ràng nên chần chừ gia hạn.</p>
-                     <blockquote class="border-l-4 border-red-300 pl-4 italic text-gray-500">
-                        "Anh gần như ko dùng gì đến pm..."
-                    </blockquote>
-                </div>
-            </div>
-        </section>
-
-        <!-- Solutions Section -->
-        <section>
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-green-600 mb-8">Đề Xuất Giải Pháp Tối Ưu</h2>
-            <div class="bg-white border border-gray-200 rounded-xl shadow-lg p-6 md:p-8">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <!-- Solution 1 -->
-                    <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-green-100 rounded-full w-16 h-16 mb-4">
-                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
-                            </svg>
-                        </div>
-                        <h4 class="font-bold text-lg text-green-800">Phân Loại & Tập Trung</h4>
-                        <p class="text-gray-600 text-sm">Loại trừ sớm nhóm đã đóng cửa. Tập trung nguồn lực vào các khách hàng còn tiềm năng để tối ưu hiệu quả.</p>
-                    </div>
-
-                    <!-- Solution 2 -->
-                    <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-blue-100 rounded-full w-16 h-16 mb-4">
-                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                            </svg>
-                        </div>
-                        <h4 class="font-bold text-lg text-blue-800">Tiếp Cận Đa Kênh</h4>
-                        <p class="text-gray-600 text-sm">Kết hợp gọi điện với Zalo, SMS, Email. Phối hợp sale để tăng tỷ lệ tiếp cận và kết nối lại với khách hàng.</p>
-                    </div>
-
-                    <!-- Solution 3 -->
-                    <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-purple-100 rounded-full w-16 h-16 mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                            </svg>
-                        </div>
-                        <h4 class="font-bold text-lg text-purple-800">Đào Tạo & Khơi Gợi</h4>
-                        <p class="text-gray-600 text-sm">Lên lịch hướng dẫn 1-1 các tính năng chính (tạo đơn, báo cáo...) để khách hàng thấy giá trị thực tiễn của sản phẩm.</p>
-                    </div>
-
-                    <!-- Solution 4 -->
-                    <div class="text-center">
-                        <div class="flex justify-center items-center mx-auto bg-yellow-100 rounded-full w-16 h-16 mb-4">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-yellow-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v.01M12 6v-1m0 1H9.599M12 14v.01M12 16v-1m0 1h2.599m-2.599 0h-2.599" />
-                            </svg>
-                        </div>
-                        <h4 class="font-bold text-lg text-yellow-800">Tận Dụng Ưu Đãi</h4>
-                        <p class="text-gray-600 text-sm">Sử dụng chương trình Flashsale sinh nhật để thúc đẩy những khách hàng đang do dự, tạo lý do để gia hạn sớm.</p>
+                    <div class="border-l-4 border-blue-500 pl-4 py-2">
+                        <p class="text-gray-500 text-sm font-medium">2. Doanh thu (Revenue)</p>
+                        <p class="text-2xl font-bold text-gray-800">110.58% <span class="text-base font-normal">HTKH</span></p>
+                        <p class="text-sm text-gray-600">Điểm: <span class="font-semibold text-blue-600">44.23%</span></p>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+        
+        <!-- OKRs Section -->
+        <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">TIẾN ĐỘ THỰC HIỆN OKRs THÁNG 8</h2>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <!-- Objective 1 -->
+            <div class="card p-6">
+                <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-sm text-indigo-500 font-semibold">O1</p>
+                        <h3 class="text-xl font-bold text-gray-800">Nâng cao chất lượng dịch vụ & đột phá tỷ lệ gia hạn</h3>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-500">Tiến độ</p>
+                        <p class="text-2xl font-bold text-red-500">64.5%</p>
+                    </div>
+                </div>
+                
+                <div class="space-y-5">
+                    <!-- KR 1.1 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-gray-700">K1.1: Tỷ lệ gia hạn chung đạt 47%</span>
+                            <span class="status-badge status-bad">Không tốt lắm</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Kết quả T8: <span class="font-bold text-gray-700">44.1%</span> / KH: 49.04%</p>
+                        <div class="progress-bar-bg mt-2">
+                            <div class="progress-bar progress-bar-danger" style="width: 66.4%;"></div>
+                        </div>
+                        <p class="text-right text-sm font-semibold mt-1">66.4%</p>
+                    </div>
+                    <!-- KR 1.2 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="font-semibold text-gray-700">K1.2: Tỷ lệ chuyển đổi đạt 43,8%</span>
+                            <span class="status-badge status-ok">Ổn</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Kết quả T8: <span class="font-bold text-gray-700">42.02%</span> / KH: 44.9%</p>
+                        <div class="progress-bar-bg mt-2">
+                            <div class="progress-bar progress-bar-warn" style="width: 78.7%;"></div>
+                        </div>
+                        <p class="text-right text-sm font-semibold mt-1">78.7%</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Objective 2 -->
+            <div class="card p-6">
+                 <div class="flex justify-between items-start mb-4">
+                    <div>
+                        <p class="text-sm text-indigo-500 font-semibold">O2</p>
+                        <h3 class="text-xl font-bold text-gray-800">Gia tăng nghiệp vụ & tăng doanh thu</h3>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-sm text-gray-500">Tiến độ</p>
+                        <p class="text-2xl font-bold text-green-500">97.3%</p>
+                    </div>
+                </div>
+                 <div class="space-y-4">
+                    <!-- KR 2.1 -->
+                    <div>
+                        <div class="flex justify-between items-center mb-1">
+                           <span class="font-semibold text-gray-700">K2.1: Doanh thu gia hạn</span>
+                           <span class="status-badge status-good">Ổn</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Đạt <span class="font-bold text-gray-700">1,023 Triệu</span>, tăng 23% so với T7</p>
+                        <div class="progress-bar-bg mt-2"><div class="progress-bar" style="width: 100%;"></div></div>
+                        <p class="text-right text-sm font-semibold mt-1">100% HTKH</p>
+                    </div>
+                    <!-- KR 2.2 -->
+                    <div>
+                       <div class="flex justify-between items-center mb-1">
+                           <span class="font-semibold text-gray-700">K2.2: Doanh thu upsell</span>
+                           <span class="status-badge status-bad">Ổn</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Đạt <span class="font-bold text-gray-700">206 Triệu</span>, tăng 11.3% so với T7</p>
+                        <div class="progress-bar-bg mt-2"><div class="progress-bar" style="width: 94.2%;"></div></div>
+                        <p class="text-right text-sm font-semibold mt-1">94.2% HTKH</p>
+                    </div>
+                    <!-- KR 2.3 -->
+                     <div>
+                       <div class="flex justify-between items-center mb-1">
+                           <span class="font-semibold text-gray-700">K2.3: Doanh thu TB/Nhân sự</span>
+                           <span class="status-badge status-ok">Ổn</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Đạt <span class="font-bold text-gray-700">175 Triệu</span> / NS</p>
+                        <div class="progress-bar-bg mt-2"><div class="progress-bar" style="width: 95.1%;"></div></div>
+                        <p class="text-right text-sm font-semibold mt-1">95.1% HTKH</p>
+                    </div>
+                     <!-- KR 2.4 -->
+                     <div>
+                       <div class="flex justify-between items-center mb-1">
+                           <span class="font-semibold text-gray-700">K2.4: SLA</span>
+                           <span class="status-badge status-great">Rất Tốt</span>
+                        </div>
+                        <p class="text-sm text-gray-500">Đạt <span class="font-bold text-gray-700">97.4%</span></p>
+                        <div class="progress-bar-bg mt-2"><div class="progress-bar" style="width: 100%;"></div></div>
+                         <p class="text-right text-sm font-semibold mt-1">100% HTKH</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Analysis & Action Plan -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Analysis -->
+            <div class="card p-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                    Đánh Giá Chi Tiết
+                </h2>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-3 mt-1">🔻</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Tỷ lệ gia hạn & chuyển đổi</h4>
+                            <p class="text-sm text-gray-600">Gia hạn thực tế (<span class="font-bold">44.13%</span>) thấp hơn nhiều so với mục tiêu (<span class="font-bold">49.04%</span>). Chuyển đổi (<span class="font-bold">42.02%</span>) cũng chưa đạt kế hoạch, cần cải thiện hiệu suất.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-yellow-500 mr-3 mt-1">🔹</span>
+                        <div>
+                            <h4 class="font-semibold text-gray-700">Phân tích nhóm khách hàng</h4>
+                            <p class="text-sm text-gray-600">Nhóm "Active" có cải thiện nhẹ, nhưng tỷ lệ chuyển đổi web giảm 4%. Nhóm "Inactive" có xu hướng giảm nhẹ, chủ yếu từ tập FNB.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-green-500 mr-3 mt-1">🔺</span>
+                        <div>
+                             <h4 class="font-semibold text-gray-700">Doanh thu</h4>
+                             <p class="text-sm text-gray-600">Doanh thu gia hạn và Upsell đều tăng trưởng tốt so với tháng 7 (tăng <span class="font-bold">23%</span> và <span class="font-bold">11.3%</span>), cho thấy dấu hiệu rất tích cực.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!-- Action Plan -->
+            <div class="card p-6 gradient-bg text-white">
+                <h2 class="text-2xl font-bold mb-4 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5l7 7-7 7M5 5l7 7-7 7" /></svg>
+                    Kế Hoạch Hành Động Tháng 9
+                </h2>
+                <ul class="space-y-3 list-inside">
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1">1.</span>
+                        <span><strong class="font-semibold">Phân bổ lại cơ hội:</strong> Điều chỉnh lại nguồn lực cho các nhân sự chưa đạt hiệu suất.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1">2.</span>
+                        <span><strong class="font-semibold">Phối hợp đội CS:</strong> Cải thiện tỷ lệ active, tập trung vào nhóm khách hàng có khả năng quay lại cao.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1">3.</span>
+                        <span><strong class="font-semibold">Mapping hành vi KH:</strong> Phân loại & dự đoán nguy cơ rời bỏ để tập trung chăm sóc ưu tiên.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="mr-2 mt-1">4.</span>
+                        <span><strong class="font-semibold">Ứng dụng AI:</strong> Tiếp tục dùng AI để hỗ trợ đánh giá, gợi ý nội dung chăm sóc và phân loại rủi ro.</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
     </div>
+
+    <script>
+        // Animate the KPI gauge on load
+        window.addEventListener('load', () => {
+            const arc = document.getElementById('kpi-arc');
+            const totalLength = arc.getTotalLength();
+            const percentage = 0.9142; // 91.42%
+            arc.style.strokeDasharray = totalLength;
+            // The formula is totalLength - (percentage * totalLength)
+            arc.style.strokeDashoffset = totalLength - (percentage * totalLength);
+        });
+    </script>
 </body>
+
 </html>
